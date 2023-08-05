@@ -72,7 +72,7 @@ function Pokemon() {
         <div className='flex-grow'>
           <PokemonSearchBar onSearch={handleSearch} filterValue={filterValue} setFilterValue={setFilterValue} />
         </div>
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4'>
           {isLoading ? (
             Array.from({ length: limit }).map((_, index) => (
               <div key={index} className="w-full border rounded p-2 bg-white">
