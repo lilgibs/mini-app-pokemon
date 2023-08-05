@@ -21,11 +21,11 @@ export function getTypeColor(type) {
     case 'ghost':
       return 'bg-indigo-800'
     case 'steel':
-      return 'bg-blue-gray-500'
+      return 'bg-gray-500'
     case 'flying':
       return 'bg-indigo-400'
     case 'normal':
-      return 'bg-gray-400'
+      return 'bg-emerald-800'
     case 'fighting':
       return 'bg-amber-900'
     case 'psychic':
