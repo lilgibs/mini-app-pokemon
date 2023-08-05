@@ -2,7 +2,7 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-function Pagination({ pageCount, onPageChange, forcePage, color = 'yellow-500' }) {
+function Pagination({ pageCount, onPageChange, forcePage, color}) {
 
   const handlePageClick = (data) => {
     onPageChange(data);
@@ -29,7 +29,7 @@ function Pagination({ pageCount, onPageChange, forcePage, color = 'yellow-500' }
       nextClassName="pt-1"
       nextLinkClassName={"next-link"}
       disabledClassName={"disabled text-neutral-400"}
-      activeClassName={`active font-semibold border-b-2 border-w text-${color} border-${color}`}
+      activeClassName={`active font-semibold border-b-2 border-w text-yellow-500 border-yellow-500`}
       forcePage={forcePage} // react-paginate mulai dari 0
     />
   )

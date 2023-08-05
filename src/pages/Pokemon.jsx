@@ -25,10 +25,15 @@ function Pokemon() {
       setTotalPokemon(response.data.count);
 
       const pokemonDetails = await Promise.all(pokemons.map(async (pokemon) => {
-        const pokemonResponse = await axios.get(pokemon.url)
-        return pokemonResponse.data
+        try {
+          const pokemonResponse = await axios.get(pokemon.url)
+          return pokemonResponse.data
+        } catch (error) {
+          return null;
+        }
       }))
-      setPokemonDatas(pokemonDetails)
+      const validPokemonDetails = pokemonDetails.filter(pokemon => pokemon !== null);
+      setPokemonDatas(validPokemonDetails);
       console.log(pokemonDetails)
     } catch (error) {
       console.log(error)
