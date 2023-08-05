@@ -37,7 +37,7 @@ function PokemonDetail() {
           <div className='flex flex-col sm:flex-row w-full gap-5 h-auto'>
             <div className='flex sm:w-1/3 bg-neutral-50 rounded border items-center'>
               <img
-                src={pokemon.sprites?.other["official-artwork"].front_default || pokemon.sprites?.other["official-artwork"].front_shiny || 'pokeball2.png'}
+                src={pokemon.sprites?.other["official-artwork"].front_default || pokemon.sprites?.other["official-artwork"].front_shiny || '/pokeball2.png'}
                 alt={pokemon.name}
               />
             </div>
