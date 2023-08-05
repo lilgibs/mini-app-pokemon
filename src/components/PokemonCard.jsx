@@ -3,15 +3,16 @@ import { capitalizeWords } from '../utils/capitalizeWords'
 import { getTypeColor } from '../utils/getTypeColor'
 import { Link } from 'react-router-dom'
 import { spaceWords } from '../utils/spaceWords'
+import PokemonCardImage from './PokemonCardImage'
 
 function PokemonCard({ pokemon }) {
   return (
-    <div className='group flex flex-col border rounded-md shadow-sm hover:border-yellow-500 cursor-pointer hover:-translate-y-1 duration-200'>
+    <div className='group flex flex-col border rounded-md shadow-sm hover:border-yellow-500 cursor-pointer hover:-translate-y-1 duration-300'>
       <Link to={`/pokemon/${pokemon.id}`}>
-        <img
-          src={pokemon.sprites?.other["official-artwork"].front_default || pokemon.sprites?.other["official-artwork"].front_shiny || 'pokeball2.png'} alt={pokemon.name}
-          className='w-full bg-neutral-50 border-b rounded-t-md' />
-
+        <PokemonCardImage
+          src={pokemon.sprites?.other["official-artwork"].front_default || pokemon.sprites?.other["official-artwork"].front_shiny || '/pokeball2.png'}
+          alt={pokemon.name}
+        />
         <div className='p-2 flex flex-col justify-between bg-white rounded-b-md h-28 md:h-32'>
           <div className=''>
             <p className='text-neutral-500 text-xs md:text-sm'>#{String(pokemon.id).padStart(4, '0')}</p>

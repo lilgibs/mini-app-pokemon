@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { FaSearch } from 'react-icons/fa';
 import PokemonCard from '../components/PokemonCard'
 import Pagination from '../components/Pagination'
 import Banner from '../components/Banner'
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
+import PokemonSearchBar from '../components/PokemonSearchBar';
 
 function Pokemon() {
   const [pokemonDatas, setPokemonDatas] = useState()
@@ -11,6 +13,7 @@ function Pokemon() {
   const [page, setPage] = useState(1);
   const [totalPokemon, setTotalPokemon] = useState(null);
   const [filterValue, setFilterValue] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const totalPages = Math.ceil(totalPokemon / limit);
 
@@ -20,6 +23,7 @@ function Pokemon() {
 
   const fetchPokemons = async (page, limit, filterValue) => {
     try {
+      setIsLoading(true)
       if (filterValue) {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${filterValue}`)
         console.log(response)
@@ -42,15 +46,20 @@ function Pokemon() {
         setPokemonDatas(validPokemonDetails);
       }
     } catch (error) {
-      alert(error.response.data)
+      if (error.response && error.response.status === 404) {
+        alert("Pokemon not found");
+      } else {
+        alert("An error occurred");
+      }
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  const handleSearch = (e) => {
-    e.preventDefault()
+  const handleSearch = () => {
     fetchPokemons(page, limit, filterValue)
   }
-
+  
   useEffect(() => {
     fetchPokemons(page, limit)
   }, [page, limit])
@@ -60,28 +69,21 @@ function Pokemon() {
       <Banner />
       <div className='w-[90%] max-w-5xl mx-auto mt-5'>
         <div className='flex-grow'>
-          <form onSubmit={handleSearch}>
-            <div className="flex justify-between w-full text-sm md:text-md mb-3 md:mb-5">
-              <input
-                className='border-l border-b border-t rounded-s-md px-4 focus:border-yellow-400 focus:outline-none w-full'
-                value={filterValue}
-                onChange={(e) => setFilterValue(e.target.value)}
-                placeholder="Search by pokemon name ..."
-              />
-              <button
-                className="flex gap-2 items-center bg-yellow-400 hover:bg-yellow-500 font-semibold text-white text-md py-2 md:py-3 px-4 rounded-e-md cursor-pointer"
-                type='submit'
-              >
-                <FaSearch />
-                <p>Search</p>
-              </button>
-            </div>
-          </form>
+          <PokemonSearchBar onSearch={handleSearch} filterValue={filterValue} setFilterValue={setFilterValue} />
         </div>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5'>
-          {pokemonDatas && pokemonDatas.map(pokemon => (
-            <PokemonCard pokemon={pokemon} />
-          ))}
+          {isLoading ? (
+            Array.from({ length: limit }).map((_, index) => (
+              <div key={index} className="w-full border rounded p-2 bg-white">
+                <Skeleton height={180} />
+                <Skeleton height={20} />
+                <Skeleton height={20} />
+                <Skeleton height={20} />
+              </div>
+            ))
+          ) : (
+            pokemonDatas && pokemonDatas.map((pokemon) => <PokemonCard key={pokemon.name} pokemon={pokemon} />)
+          )}
         </div>
         <div className='mt-5'>
           <Pagination

@@ -31,7 +31,7 @@ function PokemonDetail() {
 
   return (
     <>
-      <Banner pageName='Pokemon Detail'/>
+      <Banner pageName='Pokemon Detail' />
       <div className='w-[90%] max-w-4xl min-h-screen bg-white mx-auto text-neutral-700 p-5 border rounded mt-5'>
         <div className='flex flex-col md:-flex-row gap-5'>
           <div className='flex flex-col sm:flex-row w-full gap-5 h-auto'>
@@ -86,7 +86,9 @@ function PokemonDetail() {
             ))}
           </div>
           <Link to="/">
-            <p className='px-4 py-2 w-fit mx-auto lg:text-xl outline outline-1 bg-neutral-50 hover:outline-none border-yellow-500 font-semibold rounded hover:bg-neutral-700 hover:text-yellow-300 cursor-pointer duration-150'>Browse All Pokemon</p>
+            <p className='px-2 py-1 w-fit mx-auto lg:text-lg outline outline-1 bg-neutral-50 hover:outline-none border-yellow-500 font-semibold rounded hover:bg-neutral-700 hover:text-yellow-300 cursor-pointer duration-150'>
+              Browse All Pokemon
+            </p>
           </Link>
         </div>
       </div>
