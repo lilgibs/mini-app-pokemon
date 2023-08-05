@@ -15,7 +15,7 @@ function PokemonCardImage({ src, alt, ...props }) {
     return <Skeleton height={180} />;
   }
 
-  return <img className='w-full border-b' src={src} alt={alt} {...props} />;
+  return <img className='w-full border-b bg-neutral-50 rounded-t-md' src={src} alt={alt} {...props} />;
 }
 
 export default PokemonCardImage
