@@ -25,7 +25,8 @@ function Pokemon() {
     try {
       setIsLoading(true)
       if (filterValue) {
-        const valueLowerCase = filterValue.toLowerCase()
+        const valueLowerCase = filterValue.toLowerCase().replace(/\s+/g, '-');
+
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${valueLowerCase}`)
         console.log(response)
         setPokemonDatas([response.data]);
