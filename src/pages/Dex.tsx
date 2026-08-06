@@ -10,7 +10,7 @@ import PokemonCard from '../components/PokemonCard';
 import TypeChip from '../components/TypeChip';
 import { Button } from '../components/ui/button';
 
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 32;
 
 function CardSkeleton() {
   return (
@@ -95,7 +95,7 @@ function Dex() {
   const isLoading = searchTerm ? search.isPending : list.isLoading;
 
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
+    <main className="mx-auto w-full max-w-[90rem] flex-1 px-4 py-6 sm:px-6 sm:py-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <form onSubmit={submitSearch} className="relative flex-1">
           <Search
@@ -142,7 +142,11 @@ function Dex() {
           >
             <TypeChip
               type={type}
-              className={typeFilter === type ? 'ring-1 ring-foreground' : 'opacity-60'}
+              className={
+                typeFilter === type
+                  ? 'ring-2 ring-foreground ring-offset-1 ring-offset-background'
+                  : 'hover:brightness-95'
+              }
             />
           </button>
         ))}
@@ -165,7 +169,7 @@ function Dex() {
         </p>
       )}
 
-      <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+      <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
         {isLoading
           ? Array.from({ length: searchTerm ? 1 : PAGE_SIZE }, (_, index) => (
               <li key={index}>

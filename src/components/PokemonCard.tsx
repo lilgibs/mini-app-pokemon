@@ -24,13 +24,13 @@ function PokemonCard({ pokemon, isOnTeam, onToggleTeam }: PokemonCardProps) {
         to={`/pokemon/${pokemon.id}`}
         className="flex flex-col rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <div className="flex items-center justify-between px-3 pt-3">
+        <div className="flex items-center justify-between px-2.5 pt-2.5">
           <span className="tabular font-mono text-eyebrow text-muted-foreground">
             {dexNumber(pokemon.id)}
           </span>
         </div>
 
-        <div className="aspect-square px-4">
+        <div className="aspect-square px-3">
           {pokemon.spriteUrl ? (
             <img
               src={pokemon.spriteUrl}
@@ -45,7 +45,7 @@ function PokemonCard({ pokemon, isOnTeam, onToggleTeam }: PokemonCardProps) {
           )}
         </div>
 
-        <div className="px-3 pb-3">
+        <div className="px-2.5 pb-2.5">
           <h3 className="truncate font-medium leading-tight">{titleCase(pokemon.name)}</h3>
           <ul className="mt-1.5 flex flex-wrap gap-1">
             {pokemon.types.map((type) => (
@@ -57,7 +57,7 @@ function PokemonCard({ pokemon, isOnTeam, onToggleTeam }: PokemonCardProps) {
         </div>
       </Link>
 
-      <div className="border-t p-2">
+      <div className="border-t p-1.5">
         <Button
           variant={isOnTeam ? 'outline' : 'ghost'}
           size="sm"
