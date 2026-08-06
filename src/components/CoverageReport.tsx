@@ -73,31 +73,50 @@ export interface ThreatSummaryProps {
   sharedWeaknesses: { type: (typeof POKEMON_TYPES)[number]; weakTo: number }[];
 }
 
-/** The one sentence a player actually acts on, stated before the grid. */
+/**
+ * The one sentence a player actually acts on, stated before the grid.
+ *
+ * Only the types tied at the worst count are named, because "2 of 4 fold to
+ * Psychic and Fire" is a claim about both types and has to be true of both.
+ * Anything below that count is left to the matrix, which is right there.
+ */
 export function ThreatSummary({ team, sharedWeaknesses }: ThreatSummaryProps) {
+  const worst = sharedWeaknesses[0];
+
   if (team.length === 0) return null;
 
-  if (sharedWeaknesses.length === 0) {
+  if (!worst) {
     return (
-      <p className="text-sm">
-        No attacking type beats more than half this roster. The spread is even.
+      <p className="text-sm text-muted-foreground">
+        No attacking type beats more than half this roster.
       </p>
     );
   }
 
+  const tied = sharedWeaknesses.filter((row) => row.weakTo === worst.weakTo).slice(0, 3);
+  const remaining = sharedWeaknesses.length - tied.length;
+
   return (
     <p className="text-sm">
-      {sharedWeaknesses.map((row, index) => (
+      <span className="tabular font-mono">{worst.weakTo}</span>
+      <span className="text-muted-foreground"> of </span>
+      <span className="tabular font-mono">{team.length}</span>
+      <span className="text-muted-foreground"> fold to </span>
+      {tied.map((row, index) => (
         <span key={row.type}>
-          {index > 0 && <span className="text-muted-foreground"> and </span>}
-          <span className="tabular font-mono">{row.weakTo}</span>
-          <span className="text-muted-foreground"> of </span>
-          <span className="tabular font-mono">{team.length}</span>
-          <span className="text-muted-foreground"> fold to </span>
+          {/* Commas between, "and" before the last. A run of "and" reads like a
+              list nobody finished writing. */}
+          {index > 0 && (
+            <span className="text-muted-foreground">
+              {index === tied.length - 1 ? ' and ' : ', '}
+            </span>
+          )}
           <span className="font-semibold text-hazard">{titleCase(row.type)}</span>
         </span>
       ))}
-      <span className="text-muted-foreground">.</span>
+      <span className="text-muted-foreground">
+        {remaining > 0 ? `, with ${remaining} more type${remaining > 1 ? 's' : ''} close behind.` : '.'}
+      </span>
     </p>
   );
 }

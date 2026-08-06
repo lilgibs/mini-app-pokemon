@@ -1,8 +1,10 @@
-# 🔴 Pokedex Team Builder
+# 🔴 PokePick
 
-Browse the National Pokedex, pick a team of six, and find out where that team
-breaks: which attacking types most of your roster folds to, and which types it
-has no way to hit back.
+**Pick your poke. Then find out what beats it.**
+
+Browse the National Pokedex, build a team of six, and see where that team breaks:
+which attacking types most of your roster folds to, and which types it has no way
+to hit back.
 
 > 🌐 **Live demo:** _add your deployment URL here_
 
@@ -137,8 +139,8 @@ on disk for six Pokemon that need a name, a typing, and one image.
 ## 🚀 Running locally
 
 ```bash
-git clone https://github.com/lilgibs/mini-app-pokemon.git
-cd mini-app-pokemon
+git clone https://github.com/lilgibs/pokepick.git
+cd pokepick
 npm install
 npm run dev
 ```

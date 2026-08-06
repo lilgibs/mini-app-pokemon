@@ -20,7 +20,7 @@ interface TeamState {
   clear: () => void;
 }
 
-export const TEAM_STORAGE_KEY = 'pokedex.team';
+export const TEAM_STORAGE_KEY = 'pokepick.team';
 
 export const useTeamStore = create<TeamState>()(
   persist(

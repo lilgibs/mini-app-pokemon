@@ -21,7 +21,9 @@ function AppHeader() {
     <header className="sticky top-0 z-20 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <div className="flex items-center gap-1">
-          <span className="mr-3 font-mono text-eyebrow uppercase tracking-widest">Pokedex</span>
+          <span className="mr-3 hidden font-mono text-eyebrow uppercase tracking-wide sm:inline">
+            PokePick
+          </span>
           <NavLink to="/" className={linkClass} end>
             Browse
           </NavLink>

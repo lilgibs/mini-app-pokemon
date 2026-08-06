@@ -69,7 +69,7 @@ function Team() {
           {Array.from({ length: emptySlots }, (_, index) => (
             <li
               key={`empty-${index}`}
-              className="flex aspect-square items-center justify-center rounded-md border border-dashed"
+              className="flex min-h-24 items-center justify-center rounded-md border border-dashed"
             >
               <span className="font-mono text-eyebrow text-muted-foreground/50">empty</span>
             </li>

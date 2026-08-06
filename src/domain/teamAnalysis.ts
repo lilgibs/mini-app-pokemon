@@ -96,10 +96,17 @@ export function summarizeTeam(team: readonly TeamMember[]): TeamSummary {
   const threats = rankedThreats(team);
   const gaps = coverageGaps(team);
 
+  /**
+   * Half the roster is where a single attacking type stops being an
+   * inconvenience and starts deciding matches, but half of two is one, and one
+   * member being weak to something is just how Pokemon works. Two members is
+   * the floor for calling a weakness shared, so a small team reports the types
+   * every one of them folds to rather than every type at all.
+   */
+  const sharedFloor = Math.max(2, Math.ceil(team.length / 2));
+
   return {
-    // Half the roster is the point where a single attacking type stops being an
-    // inconvenience and starts deciding matches.
-    sharedWeaknesses: threats.filter((row) => team.length > 0 && row.weakTo >= team.length / 2),
+    sharedWeaknesses: threats.filter((row) => row.weakTo >= sharedFloor),
     threats,
     gaps,
     typesCovered: POKEMON_TYPES.length - gaps.length,

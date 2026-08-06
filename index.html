@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#2D5BFF" />
     <meta
       name="description"
-      content="Browse the National Pokedex and build a team of six, with a resistance matrix that shows which attacking types your roster folds to and which types it cannot hit back."
+      content="Pick your poke. Then find out what beats it. Build a team of six and see which attacking types the roster folds to and which types it cannot hit back."
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,7 @@
       // not flash white while it loads.
       (function () {
         try {
-          var saved = localStorage.getItem('pokedex.theme');
+          var saved = localStorage.getItem('pokepick.theme');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           if (saved === 'dark' || (!saved && prefersDark)) {
             document.documentElement.classList.add('dark');
@@ -31,10 +31,10 @@
       })();
     </script>
 
-    <title>Pokedex Team Builder</title>
+    <title>PokePick</title>
   </head>
   <body>
-    <noscript>Enable JavaScript to run the Pokedex.</noscript>
+    <noscript>Enable JavaScript to run PokePick.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -1,9 +1,9 @@
 {
-  "name": "pokedex-team-builder",
+  "name": "pokepick",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "A Pokedex with a team builder that reports defensive weaknesses and offensive coverage gaps.",
+  "description": "Pick a team of six and see which attacking types the roster folds to and which types it cannot hit back.",
   "engines": {
     "node": ">=20"
   },

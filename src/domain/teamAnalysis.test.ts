@@ -125,6 +125,21 @@ describe('summarizeTeam', () => {
     expect(summary.sharedWeaknesses.map((row) => row.type)).toContain('electric');
   });
 
+  // Half of two is one, and one member being weak to something is just how
+  // Pokemon works. Without a floor, a pair reports almost every type as shared
+  // and the summary sentence stops filtering anything at all.
+  it('needs both members of a pair, not just one', () => {
+    // Ground beats Arbok and leaves Ivysaur neutral.
+    const pair = [member('ivysaur', ['grass', 'poison'], 2), member('arbok', ['poison'], 24)];
+    const shared = summarizeTeam(pair).sharedWeaknesses.map((row) => row.type);
+    expect(shared).toContain('psychic');
+    expect(shared).not.toContain('ground');
+  });
+
+  it('reports nothing as shared for a team of one', () => {
+    expect(summarizeTeam([charizard]).sharedWeaknesses).toEqual([]);
+  });
+
   it('leaves a weakness held by one member out of the shared list', () => {
     const summary = summarizeTeam(starters);
     // Rock only hits Charizard, one of four.

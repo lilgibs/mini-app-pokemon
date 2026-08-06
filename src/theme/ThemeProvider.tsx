@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
 
-const THEME_KEY = 'pokedex.theme';
+const THEME_KEY = 'pokepick.theme';
 
 export type Theme = 'light' | 'dark';
 
