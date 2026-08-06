@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/pokeball.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2D5BFF" />
+    <meta
+      name="description"
+      content="Browse the National Pokedex and build a team of six, with a resistance matrix that shows which attacking types your roster folds to and which types it cannot hit back."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;700;900&family=Azeret+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // The theme is applied before React takes over, so a dark-mode page does
+      // not flash white while it loads.
+      (function () {
+        try {
+          var saved = localStorage.getItem('pokedex.theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Pokedex Team Builder</title>
+  </head>
+  <body>
+    <noscript>Enable JavaScript to run the Pokedex.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
